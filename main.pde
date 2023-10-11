@@ -8,9 +8,10 @@ void setup() {
 
 void draw() {
 	background(255);
-	scene_manager.print();
+	scene_manager.update();
+	scene_manager.GotoNextScene();
 }
 
 void mousePressed() {
-	scene_manager.GotoNextScene();
+
 }

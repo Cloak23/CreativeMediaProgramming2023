@@ -4,10 +4,12 @@ class Button
   private PFont font;
   private String label;
   private int fontSize;
+
+  public boolean is_active = true;
   
   private int delay = 0, framesPassed = 0;
   
-  public Button(int x, int y, int width, int height, String label, int fontSize)
+  public Button(int x, int y, int width, int height, String label, int fontSize, boolean isActive)
   {
     this.x = x;
     this.y = y;
@@ -16,6 +18,7 @@ class Button
     // this.font = createFont("Arial", 16, true);
     this.fontSize = fontSize;
     this.label = label;
+    this.is_active = isActive;
   }
   
   public void Draw()
@@ -28,10 +31,11 @@ class Button
     fill(0);
     text(label, x + 5, y + (height - fontSize) / 2 + (height / 2));
     
-    // if(framesPassed < delay)
-    // {
-    //   framesPassed++;
-    // }
+    if(framesPassed < delay)
+    {
+      framesPassed++;
+      println(framesPassed);
+    }
   }
   
   public void SetFrameDelay(int delay)

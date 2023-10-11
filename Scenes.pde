@@ -1,6 +1,6 @@
-abstract class Scene
+class Scene
 {
-	private boolean require = true;
+	protected boolean require = false;
 
 	public void Setup()
 	{
@@ -15,7 +15,8 @@ abstract class Scene
 	{
 
 	}
-	public void print()
+
+	public void Print()
 	{
 
 	}
@@ -23,26 +24,55 @@ abstract class Scene
 
 class Scene1 extends Scene
 {
-	private Button new_button = new Button(width/2, height/3*2, 200, 70, "Start", 15);
-	public void print()
+	private Button closet_button = new Button(width/2, height/3*2, 200, 70, "Start", 15, true);
+	private Button clock_part_1 = new Button(width/2, height/3*2, 200, 70, "clock part 1", 15, false);
+
+
+	private int clock_part_count = 0;
+
+	private ArrayList<Button> button_list = new ArrayList<Button>();
+
+	public void Setup() {
+
+	}
+	
+	public void Button()
+	{
+		if(closet_button.is_active)
+		{
+			closet_button.Draw();
+			if(closet_button.IsPressed())
+			{
+				closet_button.is_active = false;
+				clock_part_1.is_active = true;
+				clock_part_1.SetFrameDelay(40);
+			}	
+		}
+		if(clock_part_1.is_active)
+		{
+			clock_part_1.Draw();
+			if(clock_part_1.IsPressed())
+			{
+				clock_part_1.is_active = false;
+				clock_part_count++;
+			}
+		}
+	}
+	public void Print()
 	{
 		textSize(24);
 		fill(0);
 		text("Main Scene", width/2, height/3);
 
-		new_button.Draw();
- 	}
-
- 	public void Button()
- 	{
 
  	}
+
 
 }
 
 class Scene2 extends Scene
 {
-	void print()
+	void Print()
 	{
 		stroke(0);
 		fill(150);
@@ -52,7 +82,7 @@ class Scene2 extends Scene
 
 class Scene3 extends Scene
 {
-	void print()
+	void Print()
 	{
 		stroke(0);
 		fill(255);

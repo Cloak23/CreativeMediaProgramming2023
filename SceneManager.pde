@@ -1,34 +1,35 @@
 class SceneManager
 {
-	public static final int MAX_SCENE_STATE = 3;
 	private int scene_state = 0;
-	private Scene[] scene_list = new Scene[MAX_SCENE_STATE];
+	private ArrayList<Scene> scene_list = new ArrayList<Scene>();
 
 
 	
 	SceneManager()
 	{
-		scene_list[0] = new Scene1();
-		scene_list[1] = new Scene2();
-		scene_list[2] = new Scene3();
+		scene_list.add(new Scene1());
+		scene_list.add(new Scene2());
+		scene_list.add(new Scene3());
 		scene_state = 0;
 	}
 
-	public void print()
+	public void update()
 	{
-		scene_list[scene_state].print();
+		scene_list.get(scene_state).Print();
+		scene_list.get(scene_state).Button();
 	}
 
 	public void GotoNextScene()
 	{
-		if(scene_state >= MAX_SCENE_STATE - 1)
+		if(scene_state >= scene_list.size())
 		{
 			return;
 		}
-		if(scene_list[scene_state].CheckRequire())
+		else if(scene_list.get(scene_state).CheckRequire())
 		{
 			scene_state++;
-			scene_list[scene_state].Setup();	
+
+			if(scene_state < scene_list.size()) scene_list.get(scene_state).Setup();	
 		}
 
 	}
