@@ -16,7 +16,6 @@ class SceneManager
 	public void update()
 	{
 		scene_list.get(scene_state).Print();
-		//scene_list.get(scene_state).Button();
 	}
 
 	public void GotoNextScene()

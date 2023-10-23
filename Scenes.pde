@@ -34,48 +34,53 @@ class Scene1 extends Scene
 	private ArrayList<Button> button_list = new ArrayList<Button>();
 
 	public void Setup() {
-
 		println("Setup");
+
+
+		PImage[] images = {loadImage("/Scene_1_Image/1.png"), loadImage("/Scene_1_Image/2.png"), loadImage("/Scene_1_Image/3.png"), 
+		loadImage("/Scene_1_Image/4.png"), loadImage("/Scene_1_Image/5.png"), loadImage("/Scene_1_Image/6.png"), loadImage("/Scene_1_Image/7.png"), 
+		loadImage("/Scene_1_Image/8.png"), loadImage("/Scene_1_Image/9.png"), loadImage("/Scene_1_Image/10.png"), loadImage("/Scene_1_Image/11.png")};
+
+		for(PImage tmp : images)
+		{
+			tmp.resize(600, 600);
+			image(tmp, 0, 0);
+		}
+
+		PImage image = loadImage("/Scene_1_Image/Button_H.png");
+		image.resize(70, 100);
+
 		buttons
+		.addButton("ButtonH")
 		.setPosition(200, 200)
-		.addButton("TestButton")
+		.setSize(70, 100)
+		.setImage(image);
+		buttons
+		.addButton("ButtonA")
+		.setPosition(400, 400)
 		.setSize(100, 100);
-	}
-	
-	public void Button()
-	{
-		if(closet_button.is_active)
-		{
-			closet_button.Draw();
-			if(closet_button.IsPressed())
-			{
-				closet_button.is_active = false;
-				clock_part_1.is_active = true;
-				clock_part_1.SetFrameDelay(40);
-			}	
-		}
-		if(clock_part_1.is_active)
-		{
-			clock_part_1.Draw();
-			if(clock_part_1.IsPressed())
-			{
-				clock_part_1.is_active = false;
-				clock_part_count++;
-			}
-		}
+		buttons
+		.addButton("ButtonT")
+		.setPosition(600, 600)
+		.setSize(100, 100);
+
 	}
 
-	public void TestButton()
+	public void ButtonH()
 	{
-		println("Test Complete");
+
+	}
+	public void ButtonA()
+	{
+		
+	}
+	public void ButtonT()
+	{
+		
 	}
 
 	public void Print()
 	{
-		textSize(24);
-		fill(0);
-		text("Main Scene", width/2, height/3);
-
 
  	}
 
@@ -84,6 +89,10 @@ class Scene1 extends Scene
 
 class Scene2 extends Scene
 {
+	void Setup()
+	{
+		
+	}
 	void Print()
 	{
 		stroke(0);
