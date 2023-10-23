@@ -20,7 +20,7 @@ int c1,c2;
 
 float n,n1;
 
-
+/*
 void setup() {
   size(400,600);
   noStroke();
@@ -62,12 +62,12 @@ void setup() {
      ;
 
 }
-
 void draw() {
   background(myColor);
   myColor = lerpColor(c1,c2,n);
   n += (1-n)* 0.1; 
 }
+*/
 
 public void controlEvent(ControlEvent theEvent) {
   println(theEvent.getController().getName());

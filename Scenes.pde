@@ -1,3 +1,4 @@
+
 class Scene
 {
 	protected boolean require = false;
@@ -34,6 +35,11 @@ class Scene1 extends Scene
 
 	public void Setup() {
 
+		println("Setup");
+		buttons
+		.setPosition(200, 200)
+		.addButton("TestButton")
+		.setSize(100, 100);
 	}
 	
 	public void Button()
@@ -58,6 +64,12 @@ class Scene1 extends Scene
 			}
 		}
 	}
+
+	public void TestButton()
+	{
+		println("Test Complete");
+	}
+
 	public void Print()
 	{
 		textSize(24);

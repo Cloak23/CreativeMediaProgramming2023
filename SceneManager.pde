@@ -1,6 +1,6 @@
 class SceneManager
 {
-	private int scene_state = 0;
+	private int scene_state = -1;
 	private ArrayList<Scene> scene_list = new ArrayList<Scene>();
 
 
@@ -10,13 +10,13 @@ class SceneManager
 		scene_list.add(new Scene1());
 		scene_list.add(new Scene2());
 		scene_list.add(new Scene3());
-		scene_state = 0;
+		scene_state = -1;
 	}
 
 	public void update()
 	{
 		scene_list.get(scene_state).Print();
-		scene_list.get(scene_state).Button();
+		//scene_list.get(scene_state).Button();
 	}
 
 	public void GotoNextScene()
@@ -25,7 +25,7 @@ class SceneManager
 		{
 			return;
 		}
-		else if(scene_list.get(scene_state).CheckRequire())
+		else if(scene_state < 0 || scene_list.get(scene_state).CheckRequire())
 		{
 			scene_state++;
 
