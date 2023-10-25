@@ -1,3 +1,4 @@
+/*
 import processing.sound.*;
 Hat myHat; // Hat 객체
 Hat myHat2;
@@ -10,6 +11,7 @@ boolean clapping = false; // are we clapping now?
 
 float originalY; // 원래 y좌표를 저장할 변수
 float currentY;  // 현재 y좌표를 저장할 변수
+
 
 void setup() {
   size(600, 600);
@@ -62,3 +64,4 @@ void draw() {
   myHat2.display();
   //class를 하나 뺴서 pimage를 구현해서 x,y값 넣어두고 
 }
+*/

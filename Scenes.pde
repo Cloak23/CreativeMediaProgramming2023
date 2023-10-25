@@ -1,6 +1,4 @@
 import processing.sound.*;
-AudioIn input;
-Amplitude analyzer;
 class Scene
 {
 	ArrayList<PImage> images = new ArrayList<PImage>();
@@ -234,14 +232,12 @@ class Scene3 extends Scene
   PImage back; 
   boolean clapping = false; // are we clapping now?
   float maxHeight = 5; 
-  float  originalY = height / 10; // 원래 y좌표를 저장할 변수
+  float  originalY; // 원래 y좌표를 저장할 변수
   float  currentY = originalY;   // 현재 y좌표를 원래 y좌표로 초기화
   
   void Setup()
   {
-    input = new AudioIn(this, 0);
     input.start();
-    analyzer = new Amplitude(this);
     analyzer.input(input);
     
     back = loadImage("/Scene_3_Image/back.jpg"); 
@@ -250,6 +246,7 @@ class Scene3 extends Scene
 
      clapLevel = 0.2;
      quietLevel = 0.1;
+     originalY = height / 10;
      myHat = new Hat("/Scene_3_Image/hhat.png", width / 15, originalY, maxHeight); 
      myHat2 = new Hat("/Scene_3_Image/hhat.png", width / 2, originalY, maxHeight);
     
@@ -267,8 +264,8 @@ class Scene3 extends Scene
 
   if (vol > clapLevel && !clapping) {
     clapping = true;
-    myHat.jump(200 * vol); // 소리가 감지되면 모자를 위로 점프시킵니다.
-    myHat2.jump(100 * vol);
+    myHat.jump(50 * vol); // 소리가 감지되면 모자를 위로 점프시킵니다.
+    myHat2.jump(50 * vol);
   } else if (clapping && vol < quietLevel) {
     clapping = false; // 클랩이 끝났으니, 모자가 다시 내려올 수 있도록 상태를 변경합니다.
   }
@@ -286,7 +283,7 @@ class Scene3 extends Scene
   line(0, ybottom, 19, ybottom);
   line(0, ytop, 19, ytop);
 
-  myHat.display();
-  myHat2.display();
+  if(myHat != null)	myHat.display();
+  if(myHat2 != null) myHat2.display();
   }
 }
