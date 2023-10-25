@@ -1,4 +1,6 @@
-
+import processing.sound.*;
+AudioIn input;
+Amplitude analyzer;
 class Scene
 {
 	ArrayList<PImage> images = new ArrayList<PImage>();
@@ -225,17 +227,66 @@ class Scene2 extends Scene
 // 세 번째 씬
 class Scene3 extends Scene
 {
-	void Setup()
-	{
-		background(255);
-	}
-	void Print()
-	{
-		stroke(0);
-		fill(150);
-		rect(50, 50, 100, 100);
+  Hat myHat;
+  Hat myHat2;
+  float clapLevel;    // How loud is a clap
+  float quietLevel;
+  PImage back; 
+  boolean clapping = false; // are we clapping now?
+  float maxHeight = 5; 
+  float  originalY = height / 10; // 원래 y좌표를 저장할 변수
+  float  currentY = originalY;   // 현재 y좌표를 원래 y좌표로 초기화
+  
+  void Setup()
+  {
+    input = new AudioIn(this, 0);
+    input.start();
+    analyzer = new Amplitude(this);
+    analyzer.input(input);
+    
+    back = loadImage("/Scene_3_Image/back.jpg"); 
+    back.resize(600, 600);
+// How quiet is silence
 
-		fill(0);
-		text("Scene3", 100, 100);
-	}
+     clapLevel = 0.2;
+     quietLevel = 0.1;
+     myHat = new Hat("/Scene_3_Image/hhat.png", width / 15, originalY, maxHeight); 
+     myHat2 = new Hat("/Scene_3_Image/hhat.png", width / 2, originalY, maxHeight);
+    
+  }
+  void Print()
+  {
+   background(back);
+   float vol = analyzer.analyze();
+
+  // 클랩이 없을 때만 모자가 천천히 내려오도록 합니다.
+  if (!clapping) {
+    myHat.y = lerp(myHat.y, originalY, 0.05); // 부드럽게 내려오기 위해 lerp 함수를 사용합니다.
+    myHat2.y =lerp(myHat2.y, originalY, 0.05);
+  }
+
+  if (vol > clapLevel && !clapping) {
+    clapping = true;
+    myHat.jump(200 * vol); // 소리가 감지되면 모자를 위로 점프시킵니다.
+    myHat2.jump(100 * vol);
+  } else if (clapping && vol < quietLevel) {
+    clapping = false; // 클랩이 끝났으니, 모자가 다시 내려올 수 있도록 상태를 변경합니다.
+  }
+
+  // Draw a volume bar with threshold indicators
+  noStroke();
+  fill(200);
+  rect(0, 0, 20, height);
+  float y = map(vol, 0, 1, height, 0);
+  float ybottom = map(quietLevel, 0, 1, height, 0);
+  float ytop = map(clapLevel, 0, 1, height, 0);
+  fill(100);
+  rect(0, y, 20, y);
+  stroke(0);
+  line(0, ybottom, 19, ybottom);
+  line(0, ytop, 19, ytop);
+
+  myHat.display();
+  myHat2.display();
+  }
 }
