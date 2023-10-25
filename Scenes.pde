@@ -5,6 +5,9 @@ class Scene
 	ArrayList<PImage> images = new ArrayList<PImage>();
 	// require가 true가 되었을 때 다음 스테이지로 넘어감
 	protected boolean require = false;
+	private float trans_alpha = 0;
+
+	boolean in_transition = false, out_transition = false;
 
 	public void ResetButtons()
 	{
@@ -21,6 +24,13 @@ class Scene
 
 	}
 
+	public void Exit()
+	{
+		trans_alpha = 0;
+		out_transition = true;
+	}
+
+
 	// require 확인하는 메소드
 	public boolean CheckRequire()
 	{
@@ -30,7 +40,18 @@ class Scene
 	// 매 update 마다 불러오는 메소드
 	public void Print()
 	{
-		
+		if(out_transition)
+		{
+			trans_alpha = lerp(trans_alpha, 255, 0.02);
+			//println(trans_alpha);
+			fill(0, 15);
+			rect(0, 0, width, height);
+			if(trans_alpha >= 200)
+			{
+				out_transition = false;
+				require = true;
+			}
+		}
 	}
 
 	// 필요할 때 화면을 업데이트할때 쓰는 메소드
@@ -56,6 +77,8 @@ class MainScene extends Scene
 {
 	public void Setup()
 	{
+		super.Setup();
+
 		ResetButtons();
 		buttons
 		.addButton("StartGame")
@@ -92,10 +115,17 @@ class MainScene extends Scene
 
 	public void Print()
 	{
+		super.Print();
 		if(game_start)
 		{
-			require = true;
+			Exit();
 		}
+	}
+
+	public void Exit()
+	{
+		game_start = false;
+		super.Exit();
 	}
 }
 

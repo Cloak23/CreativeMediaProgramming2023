@@ -12,8 +12,8 @@ class Scene1 extends Scene
 
 	void Setup()
 	{
+		super.Setup();
 		ResetButtons();
-
 
 		// 내려오는 로프 이미지 불러오기
 		rope = loadImage("/Scene_1_Image/Button_H.png");
@@ -31,6 +31,7 @@ class Scene1 extends Scene
 	}
 	void Print()
 	{
+		super.Print();
 		// 로프 이미지가 특정 높이에 도달했을 때
 		if(rope_button != null && rope_button.getPosition()[1] <= height/17)
 		{
@@ -65,7 +66,7 @@ class Scene1 extends Scene
 		UpdateScreen();
 		rope_y = lerp(rope_y, goal_y, 0.02);
 
-		if(rope_y >= goal_y - 0.3)
+		if(rope_y >= goal_y - 2)
 		{
 			do_rope = false;
 
@@ -85,11 +86,11 @@ class Scene1 extends Scene
 		hand_x = lerp(hand_x, goal_x, 0.02);
 		hand_y = lerp(hand_y, goal_y, 0.02);
 
-		if(hand_y <= goal_y + 0.1 && hand_x >= goal_x - 0.3)
+		if(hand_y <= goal_y + 3 && hand_x >= goal_x - 3)
 		{
 			do_hand = false;
-
-			require = true;
+			
+			Exit();
 		}
 	}
 }

@@ -11,6 +11,7 @@ class Scene2 extends Scene
 	}
 
 	public void Setup() {
+		super.Setup();
 		ResetButtons();
 
 		find_process = 0;
@@ -68,11 +69,19 @@ class Scene2 extends Scene
 
 	public void Print()
 	{
+		super.Print();
 		// 3개 이상 요소를 찾으면 다음 스테이지로 넘김
 		if(find_process >= 3)
 		{
-			require = true;
+			ResetButtons();
+			Exit();
 		}
+ 	}
+
+ 	public void Exit()
+ 	{
+ 		super.Exit();
+ 		find_process = 0;
  	}
 
 
