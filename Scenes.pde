@@ -58,11 +58,35 @@ class MainScene extends Scene
 		ResetButtons();
 		buttons
 		.addButton("StartGame")
-		.setPosition(width/2, 2*height/3)
-		.setSize(100, 100)
+		.setPosition(3*width/4, height/3)
+		.setSize(50, 50)
 		.setLabel("Start");
 
 		UpdateScreen();
+	}
+
+	// 필요할 때 화면을 업데이트할때 쓰는 메소드
+	public void UpdateScreen()
+	{
+		super.UpdateScreen();
+
+		stroke(0);
+		fill(0);
+		textAlign(CENTER);
+		textSize(50);
+		text("Escape", width/2, height/2);
+
+		fill(255);
+		rect(50, 500, 80, 80);
+		fill(0);
+		textSize(12);
+		text("amu geu na", 90, 540);
+
+		fill(255);
+		rect(300, 500, 80, 80);
+		fill(0);
+		textSize(12);
+		text("amu geu na", 340, 540);
 	}
 
 	public void Print()
