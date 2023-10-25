@@ -5,11 +5,6 @@ public void controlEvent(ControlEvent theEvent) {
 
 }
 
-public void onDrag()
-{
-
-}
-
 public void ButtonH()
 {
 	// 탐색 진행도 올리기

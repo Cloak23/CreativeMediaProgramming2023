@@ -20,7 +20,7 @@ class Scene
 	// 매 update 마다 불러오는 메소드
 	public void Print()
 	{
-
+		
 	}
 
 	// 필요할 때 화면을 업데이트할때 쓰는 메소드
