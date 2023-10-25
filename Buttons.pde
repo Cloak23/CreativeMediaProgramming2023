@@ -3,7 +3,12 @@ boolean game_start = false;
 
 // 버튼이 눌려질 때마다 발생하는 이벤트
 public void controlEvent(ControlEvent theEvent) {
-
+	//if(theEvent.getController().isMousePressed())
+	//{
+		println("소리 난다");
+		button_sound.play();
+		//사운드 재생
+	//}
 }
 
 public void StartGame()
