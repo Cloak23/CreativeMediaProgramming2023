@@ -39,7 +39,7 @@ class SceneManager
 		{
 			return;
 		}
-		// 음수 == 시작할때 -1인 경우, 씬의 require체크 후 다음 씬으로 넘어가기
+		// -1인 경우 ( = 시작할 때 ), 씬의 require체크 후 다음 씬으로 넘어가기
 		else if(scene_state < 0 || scene_list.get(scene_state).CheckRequire())
 		{
 			scene_state++;
