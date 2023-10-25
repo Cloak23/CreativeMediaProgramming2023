@@ -5,6 +5,15 @@ class Scene
 	// require가 true가 되었을 때 다음 스테이지로 넘어감
 	protected boolean require = false;
 
+	public void ResetButtons()
+	{
+		// buttons 초기화
+		for(ControllerInterface<?> tmp : buttons.getAll())
+		{
+			buttons.remove(tmp.getName());
+		}
+	}
+
 	// 씬이 처음 로딩될 때 실행하는 메소드
 	public void Setup()
 	{
@@ -42,6 +51,21 @@ class Scene
 	}
 }
 
+class MainScene extends Scene
+{
+	public void Setup()
+	{
+		ResetButtons();
+/*
+		buttons
+		.addButton("StartGame")
+		.
+		*/
+
+		UpdateScreen();
+	}
+}
+
 // 첫 번째 씬
 class Scene1 extends Scene
 {
@@ -55,7 +79,7 @@ class Scene1 extends Scene
 	}
 
 	public void Setup() {
-		println("Setup");
+		ResetButtons();
 
 		find_process = 0;
 
@@ -136,11 +160,7 @@ class Scene2 extends Scene
 
 	void Setup()
 	{
-		// buttons 초기화
-		for(ControllerInterface<?> tmp : buttons.getAll())
-		{
-			buttons.remove(tmp.getName());
-		}
+		ResetButtons();
 
 
 		// 내려오는 로프 이미지 불러오기
