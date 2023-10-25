@@ -56,13 +56,21 @@ class MainScene extends Scene
 	public void Setup()
 	{
 		ResetButtons();
-/*
 		buttons
 		.addButton("StartGame")
-		.
-		*/
+		.setPosition(width/2, 2*height/3)
+		.setSize(100, 100)
+		.setLabel("Start");
 
 		UpdateScreen();
+	}
+
+	public void Print()
+	{
+		if(game_start)
+		{
+			require = true;
+		}
 	}
 }
 

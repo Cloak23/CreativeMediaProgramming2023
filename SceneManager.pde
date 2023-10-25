@@ -5,6 +5,7 @@ class SceneManager
 
 	SceneManager()
 	{
+		scene_list.add(new MainScene());
 		scene_list.add(new Scene1());
 		scene_list.add(new Scene2());
 		scene_list.add(new Scene3());
