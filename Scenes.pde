@@ -162,7 +162,9 @@ class Scene3 extends Scene
   {
    background(back);
    float vol = analyzer.analyze();
-
+  if(myHat == null) return;
+  if(myHat2 == null) return;
+  
   // 클랩이 없을 때만 모자가 천천히 내려오도록 합니다.
   if (!clapping) {
     myHat.y = lerp(myHat.y, originalY, 0.05); // 부드럽게 내려오기 위해 lerp 함수를 사용합니다.
@@ -189,7 +191,11 @@ class Scene3 extends Scene
   stroke(0);
   line(0, ybottom, 19, ybottom);
   line(0, ytop, 19, ytop);
-
+  
+  
+  if(myHat.y == maxHeight) myHat = null;
+  if(myHat2.y == maxHeight) myHat = null;
+  
   if(myHat != null)	myHat.display();
   if(myHat2 != null) myHat2.display();
   }
