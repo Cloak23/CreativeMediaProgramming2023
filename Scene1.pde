@@ -5,8 +5,8 @@ class Scene1 extends Scene
 
 	PImage rope, hand;
 
-	float rope_x = -100, rope_y = -100, goal_y = 0;
-	float hand_x = -100, hand_y = -100, goal_x = 0;
+	float rope_x = 2000, rope_y = 2000, goal_y = 0;
+	float hand_x = 2000, hand_y = 2000, goal_x = 0;
 
 	Rope rope_button;
 
@@ -15,17 +15,28 @@ class Scene1 extends Scene
 		super.Setup();
 		ResetButtons();
 
+		PImage rope_image = loadImage("/Scene_2_Image/4.png");
+		rope_image.resize(100, 100);
+
+		images.add(loadImage("/Scene_2_Image/1.png"));
+		images.add(loadImage("/Scene_2_Image/3.png"));
+		images.add(loadImage("/Scene_2_Image/5.png"));
+		images.add(loadImage("/Scene_2_Image/6.png"));
+
 		// 내려오는 로프 이미지 불러오기
-		rope = loadImage("/Scene_1_Image/Button_H.png");
-		rope.resize(80, 90);
+		rope = loadImage("/Scene_2_Image/7.png");
+		rope.resize(width, height);
 
 		// 움직이는 손 이미지 불러오기
-		hand = loadImage("/Scene_1_Image/Button_H.png");
-		hand.resize(80, 90);
+		hand = loadImage("/Scene_2_Image/2.png");
+		hand.resize(width, height);
 
 		// 로프 버튼 생성
 		rope_button = new Rope(buttons, "Rope");
 		rope_button.setPosition(width/4, 4*height/5);
+		rope_button.setImage(rope_image);
+		rope_button.setSize(rope_image.width, rope_image.height);
+		
 
 		UpdateScreen();
 	}
@@ -39,9 +50,9 @@ class Scene1 extends Scene
 			rope_button = null;
 
 			// 내려오는 로프 위치 초기화
-			rope_x = width/2;
-			rope_y = 0;
-			goal_y = 4*height/7;
+			rope_x = 0;
+			rope_y = -4*height/7;
+			goal_y = 0;
 			image(rope, rope_x, rope_y);
 			do_rope = true;
 		}
@@ -70,10 +81,10 @@ class Scene1 extends Scene
 		{
 			do_rope = false;
 
-			hand_x = width/5;
-			hand_y = 6 * height/7;
-			goal_x = 2 * width/5;
-			goal_y = 9 * height/14;
+			hand_x = - width/5;
+			hand_y = height + 2 * height/7;
+			goal_x = 0;
+			goal_y = 0;
 			do_hand = true;
 		}
 	}

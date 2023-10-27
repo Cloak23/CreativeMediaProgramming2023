@@ -71,21 +71,10 @@ public void DebugButton()
 }
 
 // 로프를 위해 준비한 로프 전용 클래스
-class Rope extends Controller {
+class Rope extends Button {
 
   Rope(ControlP5 cp5, String theName) {
     super(cp5, theName);
-
-    setSize(50, 50);
-
-    setView(new ControllerView() {
-	      public void display(PGraphics p, Object b) {
-	        // draw button background
-	        p.fill(0);
-	        p.rect(0, 0, getWidth(),  getHeight());
-	      }
-    	}
-    );
   }
 
   void onDrag() {
@@ -95,6 +84,7 @@ class Rope extends Controller {
 
 
     setSize(int(p1.x() + 20), int((py - p1.y()) + 20));
+    
 
     setPosition(getPosition()[0], getPosition()[1] + (py - getHeight()));
 

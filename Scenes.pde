@@ -138,7 +138,7 @@ class Scene3 extends Scene
   float quietLevel;
   PImage back; 
   boolean clapping = false; // are we clapping now?
-  float maxHeight = 5; 
+  float maxHeight = 10; 
   float  originalY; // 원래 y좌표를 저장할 변수
   float  currentY = originalY;   // 현재 y좌표를 원래 y좌표로 초기화
   
@@ -156,7 +156,7 @@ class Scene3 extends Scene
      originalY = height / 10;
      myHat = new Hat("/Scene_3_Image/hhat.png", width / 15, originalY, maxHeight); 
      myHat2 = new Hat("/Scene_3_Image/hhat.png", width / 2, originalY, maxHeight);
-    
+    Exit();
   }
   void Print()
   {
@@ -198,5 +198,9 @@ class Scene3 extends Scene
   
   if(myHat != null)	myHat.display();
   if(myHat2 != null) myHat2.display();
+  }
+  public void Exit()
+  {
+  	println("123");
   }
 }
