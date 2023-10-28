@@ -55,12 +55,12 @@ class Scene2 extends Scene
 		.setSize(T_image.width, T_image.height)
 		.setImage(T_image);
 
-		// 디버깅용 귀차니즘 버튼
-		buttons
-		.addButton("DebugButton")
-		.setPosition(width/10, 9*height/10)
-		.setSize(50, 50)
-		.setImage(T_image);
+		// // 디버깅용 귀차니즘 버튼
+		// buttons
+		// .addButton("DebugButton")
+		// .setPosition(width/10, 9*height/10)
+		// .setSize(50, 50)
+		// .setImage(T_image);
 
 		// 이미지들 전부 만들어준 후 업데이트 하기
 		UpdateScreen();

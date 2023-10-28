@@ -15,8 +15,6 @@ class Scene1 extends Scene
 		super.Setup();
 		ResetButtons();
 
-		PImage rope_image = loadImage("/Scene_2_Image/4.png");
-		rope_image.resize(100, 100);
 
 		images.add(loadImage("/Scene_2_Image/1.png"));
 		images.add(loadImage("/Scene_2_Image/3.png"));
@@ -33,9 +31,12 @@ class Scene1 extends Scene
 
 		// 로프 버튼 생성
 		rope_button = new Rope(buttons, "Rope");
-		rope_button.setPosition(width/4, 4*height/5);
-		rope_button.setImage(rope_image);
-		rope_button.setSize(rope_image.width, rope_image.height);
+		rope_button.rope_image = loadImage("/Scene_2_Image/4.png");
+		PImage input_image = rope_button.rope_image.copy();
+		input_image.resize(300, 300);
+		rope_button.setPosition(width/6, 3*height/5);
+		rope_button.setImage(input_image);
+		rope_button.setSize(input_image.width, input_image.height);
 		
 
 		UpdateScreen();
@@ -77,12 +78,12 @@ class Scene1 extends Scene
 		UpdateScreen();
 		rope_y = lerp(rope_y, goal_y, 0.02);
 
-		if(rope_y >= goal_y - 2)
+		if(rope_y >= goal_y - 20)
 		{
 			do_rope = false;
 
 			hand_x = - width/5;
-			hand_y = height + 2 * height/7;
+			hand_y = 6 * height/7;
 			goal_x = 0;
 			goal_y = 0;
 			do_hand = true;
@@ -97,7 +98,7 @@ class Scene1 extends Scene
 		hand_x = lerp(hand_x, goal_x, 0.02);
 		hand_y = lerp(hand_y, goal_y, 0.02);
 
-		if(hand_y <= goal_y + 3 && hand_x >= goal_x - 3)
+		if(hand_y <= goal_y + 10 && hand_x >= goal_x - 10)
 		{
 			do_hand = false;
 			

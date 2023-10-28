@@ -43,7 +43,8 @@ class Scene
 		if(out_transition)
 		{
 			trans_alpha = lerp(trans_alpha, 255, 0.02);
-			//println(trans_alpha);
+			println(trans_alpha);
+			stroke(0);
 			fill(0, 15);
 			rect(0, 0, width, height);
 			if(trans_alpha >= 200)
@@ -75,6 +76,7 @@ class Scene
 
 class MainScene extends Scene
 {
+	PImage main_image;
 	public void Setup()
 	{
 		super.Setup();
@@ -82,9 +84,14 @@ class MainScene extends Scene
 		ResetButtons();
 		buttons
 		.addButton("StartGame")
-		.setPosition(3*width/4, height/3)
-		.setSize(50, 50)
-		.setLabel("Start");
+		.setPosition(7*width/11, 2.5*height/11)
+		.setSize(130, 130)
+		.setColor(new CColor(0,0,0,0,0).setAlpha(0))
+		.setLabel("Enter")
+		.setColorLabel(255);
+
+		main_image = loadImage("/main.png");
+		main_image.resize(600, 600);
 
 		UpdateScreen();
 	}
@@ -93,7 +100,9 @@ class MainScene extends Scene
 	public void UpdateScreen()
 	{
 		super.UpdateScreen();
+		image(main_image, 0, 0);
 
+/*
 		stroke(0);
 		fill(0);
 		textAlign(CENTER);
@@ -111,6 +120,7 @@ class MainScene extends Scene
 		fill(0);
 		textSize(12);
 		text("amu geu na", 340, 540);
+		*/
 	}
 
 	public void Print()
@@ -138,7 +148,7 @@ class Scene3 extends Scene
   float quietLevel;
   PImage back; 
   boolean clapping = false; // are we clapping now?
-  float maxHeight = 10; 
+  float maxHeight = 200; 
   float  originalY; // 원래 y좌표를 저장할 변수
   float  currentY = originalY;   // 현재 y좌표를 원래 y좌표로 초기화
   
@@ -156,11 +166,12 @@ class Scene3 extends Scene
      originalY = height / 10;
      myHat = new Hat("/Scene_3_Image/hhat.png", width / 15, originalY, maxHeight); 
      myHat2 = new Hat("/Scene_3_Image/hhat.png", width / 2, originalY, maxHeight);
-    Exit();
+
   }
   void Print()
   {
-   background(back);
+   if(!out_transition)background(back);
+  	super.Print();
    float vol = analyzer.analyze();
   if(myHat == null) return;
   if(myHat2 == null) return;
@@ -193,14 +204,18 @@ class Scene3 extends Scene
   line(0, ytop, 19, ytop);
   
   
-  if(myHat.y == maxHeight) myHat = null;
-  if(myHat2.y == maxHeight) myHat = null;
+  if(myHat.y == maxHeight) 
+  {
+  	myHat = null;
+  	Exit();
+  }
+  if(myHat2.y == maxHeight) 
+  {
+  	myHat2 = null;
+  	Exit();
+  }
   
   if(myHat != null)	myHat.display();
   if(myHat2 != null) myHat2.display();
-  }
-  public void Exit()
-  {
-  	println("123");
   }
 }

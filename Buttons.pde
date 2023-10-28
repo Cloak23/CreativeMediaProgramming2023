@@ -72,7 +72,7 @@ public void DebugButton()
 
 // 로프를 위해 준비한 로프 전용 클래스
 class Rope extends Button {
-
+	PImage rope_image, input_image;
   Rope(ControlP5 cp5, String theName) {
     super(cp5, theName);
   }
@@ -81,12 +81,12 @@ class Rope extends Button {
     Pointer p1 = getPointer();
 
     float py = getHeight();
+    input_image = rope_image.copy();
+    this.setImage(input_image);
+    this.setSize(int(p1.x() + 70), int((py - p1.y()) + 70));
+		input_image.resize(getWidth(), getHeight());
 
-
-    setSize(int(p1.x() + 20), int((py - p1.y()) + 20));
-    
-
-    setPosition(getPosition()[0], getPosition()[1] + (py - getHeight()));
+    this.setPosition(getPosition()[0], getPosition()[1] + (py - getHeight()));
 
 		scene_manager.UpdateScreen();
 

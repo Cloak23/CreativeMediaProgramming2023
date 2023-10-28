@@ -9,6 +9,7 @@ class SceneManager
 		scene_list.add(new Scene1());
 		scene_list.add(new Scene2());
 		scene_list.add(new Scene3());
+		scene_list.add(new Scene4());
 
 		// -1에서 1 올려서 첫 씬 불러오려고 -1로 초깃값 설정함
 		scene_state = -1;
