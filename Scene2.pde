@@ -1,14 +1,9 @@
-// 두 번째 씬
 class Scene2 extends Scene
 {
 	// 버튼 이미지 선언
 	PImage H_image, A_image, T_image;
 
 
-	public void AddScreen(PImage image)
-	{
-		images.add(image);
-	}
 
 	public void Setup() {
 		super.Setup();
@@ -16,7 +11,7 @@ class Scene2 extends Scene
 
 		find_process = 0;
 
-		// 배경이미지 추가
+		// add background image
 		images.add(loadImage("/Scene_1_Image/1.png"));
 		images.add(loadImage("/Scene_1_Image/2.png"));
 		images.add(loadImage("/Scene_1_Image/4.png"));
@@ -25,20 +20,20 @@ class Scene2 extends Scene
 		images.add(loadImage("/Scene_1_Image/9.png"));
 		images.add(loadImage("/Scene_1_Image/10.png"));
 
-		// H A T 버튼의 이미지 불러오기
+		// load H A T button image
 		H_image = loadImage("/Scene_1_Image/Button_H.png");
-		//8:9
+		// 8:9
 		H_image.resize(40, 45);
 
 		A_image = loadImage("/Scene_1_Image/Button_A.png");
-		//약 1:1.6
+		// almost 1:1.6
 		A_image.resize(50, 80);
 
 		T_image = loadImage("/Scene_1_Image/Button_T.png");
-		//약 1:1.16
+		// almost 1:1.16
 		T_image.resize(25, 29);
 
-		// H A T 버튼 생성
+		// add H A T button
 		buttons
 		.addButton("ButtonH")
 		.setPosition(width/2, height/11)
@@ -55,14 +50,13 @@ class Scene2 extends Scene
 		.setSize(T_image.width, T_image.height)
 		.setImage(T_image);
 
-		// // 디버깅용 귀차니즘 버튼
+		// // for debugging
 		// buttons
 		// .addButton("DebugButton")
 		// .setPosition(width/10, 9*height/10)
 		// .setSize(50, 50)
 		// .setImage(T_image);
 
-		// 이미지들 전부 만들어준 후 업데이트 하기
 		UpdateScreen();
 	}
 
@@ -70,7 +64,7 @@ class Scene2 extends Scene
 	public void Print()
 	{
 		super.Print();
-		// 3개 이상 요소를 찾으면 다음 스테이지로 넘김
+		// finde_process (from button action) is over the 3 count, go to next scene
 		if(find_process >= 3)
 		{
 			ResetButtons();

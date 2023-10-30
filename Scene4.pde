@@ -1,5 +1,3 @@
-
-
 Movie movie;
 class Scene4 extends Scene
 {

@@ -15,21 +15,20 @@ class Scene1 extends Scene
 		super.Setup();
 		ResetButtons();
 
-
 		images.add(loadImage("/Scene_2_Image/1.png"));
 		images.add(loadImage("/Scene_2_Image/3.png"));
 		images.add(loadImage("/Scene_2_Image/5.png"));
 		images.add(loadImage("/Scene_2_Image/6.png"));
 
-		// 내려오는 로프 이미지 불러오기
+		// animation rope image
 		rope = loadImage("/Scene_2_Image/7.png");
 		rope.resize(width, height);
 
-		// 움직이는 손 이미지 불러오기
+		// animation hand image
 		hand = loadImage("/Scene_2_Image/2.png");
 		hand.resize(width, height);
 
-		// 로프 버튼 생성
+		// make rope button
 		rope_button = new Rope(buttons, "Rope");
 		rope_button.rope_image = loadImage("/Scene_2_Image/4.png");
 		PImage input_image = rope_button.rope_image.copy();
@@ -44,13 +43,13 @@ class Scene1 extends Scene
 	void Print()
 	{
 		super.Print();
-		// 로프 이미지가 특정 높이에 도달했을 때
+		// when rope over the height
 		if(rope_button != null && rope_button.getPosition()[1] <= height/17)
 		{
 			buttons.remove("Rope");
 			rope_button = null;
 
-			// 내려오는 로프 위치 초기화
+			// initial rope x, y coordinate
 			rope_x = 0;
 			rope_y = -4*height/7;
 			goal_y = 0;
@@ -58,11 +57,12 @@ class Scene1 extends Scene
 			do_rope = true;
 		}
 
-		// 내려오는 로프 애니메이션 진행중
+		// rope animation
 		if(do_rope)
 		{
 			RopeAnime();
 		}
+		// hand animation
 		if(do_hand)
 		{
 			HandAnime();
@@ -72,7 +72,7 @@ class Scene1 extends Scene
 
 	}
 
-	// 내려오는 로프 애니메이션
+	// rope animation
 	private void RopeAnime()
 	{
 		UpdateScreen();
@@ -90,7 +90,7 @@ class Scene1 extends Scene
 		}
 	}
 
-	// 움직이는 손 애니메이션
+	// hand animation
 	private void HandAnime()
 	{
 		UpdateScreen();
