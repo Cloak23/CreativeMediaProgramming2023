@@ -6,7 +6,7 @@ class Scene3 extends Scene
   float quietLevel;
   PImage back; 
   boolean clapping = false; // are we clapping now?
-  float maxHeight = 200; 
+  float maxHeight = 30; 
   float  originalY;
   float  currentY = originalY;
   
@@ -14,16 +14,15 @@ class Scene3 extends Scene
   {
     input.start();
     analyzer.input(input);
-    
-    back = loadImage("/Scene_3_Image/back.jpg"); 
-    back.resize(600, 600);
+    back = loadImage("/Scene_3_Image/back.png"); 
+    back.resize(600,600);
 // How quiet is silence
 
      clapLevel = 0.2;
      quietLevel = 0.1;
-     originalY = height / 10;
-     myHat = new Hat("/Scene_3_Image/hhat.png", width / 15, originalY, maxHeight); 
-     myHat2 = new Hat("/Scene_3_Image/hhat.png", width / 2, originalY, maxHeight);
+     originalY = height/6;
+     myHat = new Hat("/Scene_3_Image/hhat.png", 60, originalY, maxHeight); 
+     myHat2 = new Hat("/Scene_3_Image/hhatR.png", 140, originalY, maxHeight);
 
   }
   void Print()
@@ -36,15 +35,15 @@ class Scene3 extends Scene
   
   // go down hat
   if (!clapping) {
-    myHat.y = lerp(myHat.y, originalY, 0.05);
-    myHat2.y =lerp(myHat2.y, originalY, 0.05);
+    myHat.y = lerp(myHat.y, originalY, 0.1);
+    myHat2.y =lerp(myHat2.y, originalY, 0.1);
   }
 
   if (vol > clapLevel && !clapping) {
     // jump hat
     clapping = true;
-    myHat.jump(50 * vol);
-    myHat2.jump(50 * vol);
+    myHat.jump(100 * vol);
+    myHat2.jump(100 * vol);
   } else if (clapping && vol < quietLevel) {
     clapping = false;
   }
@@ -71,7 +70,7 @@ class Scene3 extends Scene
   if(myHat2.y == maxHeight) 
   {
   	myHat2 = null;
-  	Exit();
+    Exit();
   }
   
   if(myHat != null)	myHat.display();

@@ -13,8 +13,7 @@ void setup() {
 	background(255);
 
 	// last ending credit movie
-	movie = new Movie(this, "clip.mp4");
-
+	movie = new Movie(this, "Ending.mp4");
 	scene_manager = new SceneManager();
   input = new AudioIn(this, 0);
   file = new SoundFile(this, "/sound/Linger a While.mp3");

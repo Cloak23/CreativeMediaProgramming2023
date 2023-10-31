@@ -6,10 +6,9 @@ public class Hat {
 
   Hat(String imagePath, float startX, float startY, float maxY) {
     hatImage = loadImage(imagePath); 
-    hatImage.resize(300,300);
     x = startX;
     y = startY;
-
+    hatImage.resize(400, 400);
     // hat max height
     this.maxY = maxY;
   }
